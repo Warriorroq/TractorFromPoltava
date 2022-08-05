@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,14 +7,26 @@ namespace MapGeneration
     {
         [SerializeField] private CircleMapPointsGenerator _pointGenerator;
         [SerializeField] private ObjectsData _objData;
-        void Start()
+        private LinkedList<GameObject> _spawnedObjects;
+        public void Generate()
         {
+            if (_spawnedObjects is null)
+                _spawnedObjects = new LinkedList<GameObject>();
+            ClearObjects();
             var points = _pointGenerator.GeneratePoints();
             foreach (var point in points)
             {
-                var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                cube.transform.position = point;
+                var dataForSpawn = _objData.TakeRandomObjectByItsChance();
+                var instance = Instantiate(dataForSpawn.gameObject,point + dataForSpawn.offSet, Quaternion.identity);
+                _spawnedObjects.AddFirst(instance);
             }
+        }
+
+        private void ClearObjects()
+        {
+            foreach (var obj in _spawnedObjects)
+                Destroy(obj);
+            _spawnedObjects.Clear();
         }
     }   
 }

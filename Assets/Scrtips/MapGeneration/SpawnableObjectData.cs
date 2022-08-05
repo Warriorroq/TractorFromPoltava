@@ -1,25 +1,33 @@
-using System;
 using UnityEngine;
 
 namespace MapGeneration
 {
+    //[RequireComponent(typeof(Rigidbody))]
     public class SpawnableObjectData : MonoBehaviour
     {
         public int priority;
+        [SerializeField] private Rigidbody _rigitbody;
+        [SerializeField] private bool _destroyRigitbody;
         private void Start()
         {
             Destroy(this);
+            if(_destroyRigitbody)
+                Destroy(_rigitbody);
         }
         private void OnCollisionEnter(Collision collision)
         {
-            var data = collision.gameObject.GetComponent<SpawnableObjectData>();
-            if (data is not null)
-                ResolveConflict(data);
+            var spawnedDataObject = collision.gameObject.GetComponent<SpawnableObjectData>();
+            if (spawnedDataObject is not null)
+                ResolveConflict(spawnedDataObject);
         }
-        private void ResolveConflict(SpawnableObjectData data)
+        private void ResolveConflict(SpawnableObjectData spawnedDataObject)
         {
-            if(data.priority < priority)
-                Destroy(data.gameObject);
+            if (spawnedDataObject.priority <= priority)
+            {
+                //Debug.Log($"{name} is removing {spawnedDataObject.gameObject.name} cuz of conflict");
+                Destroy(spawnedDataObject.gameObject);
+                _rigitbody.velocity = Vector3.zero;
+            }
         }
     }
 }
