@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: SpawnObjectsData
   m_EditorClassIdentifier: 
   _objectsData:
-  - gameObject: {fileID: 4488634957856587687, guid: 88089ac00c7397a49af8fbc3f4be2dcf, type: 3}
+  - gameObject: {fileID: 6946243746120159076, guid: cdd25c7ba73031543b91a02ac1257de5, type: 3}
     offSet: {x: 0, y: 0.5, z: 0}
-    chance: 0.039
-  - gameObject: {fileID: 4026190765820838123, guid: 95dd66d1bc0db224cb0a760b72b90ba7, type: 3}
+    chance: 0.3
+  - gameObject: {fileID: 1670552211224909686, guid: aa8b3858ad0a4014ca11372e4848a791, type: 3}
     offSet: {x: 0, y: 0.5, z: 0}
     chance: 1
