@@ -8,8 +8,8 @@ namespace TruckAbilities
 
         protected override void OnUse(Transform owner)
         {
-            var carController = owner.GetComponent<CarController>();
-            carController.SetAdditionalMotorForce(_force);
+            var carController = owner.GetComponent<Rigidbody>();
+            carController.AddRelativeForce(_force * Vector3.forward);
             Debug.Log("Speed Up");
         }
     }

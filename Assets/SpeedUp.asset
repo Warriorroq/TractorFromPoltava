@@ -22,5 +22,5 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   isReady: 1
-  _reloadTime: 20
-  _force: 6000
+  _reloadTime: 0.001
+  _force: 1000000

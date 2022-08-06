@@ -14,9 +14,7 @@ public class CarController : MonoBehaviour
     private float _currentSteerAngle;
     private float _currentbreakForce;
     private bool _isBreaking;
-
-    [SerializeField] private float _additionalMotorForce;
-    [SerializeField] private float _removingAdditionalSpeedPerSecond;
+    
     [SerializeField] private float _motorForce;
     [SerializeField] private float _breakForce;
     [SerializeField] private float _maxSteerAngle;
@@ -27,12 +25,6 @@ public class CarController : MonoBehaviour
     [SerializeField] private WheelData _rearRightWheel;
     private Rigidbody _carRigidBody;
     [SerializeField] private Vector3 _centerOfMass;
-
-    public void SetAdditionalMotorForce(float newForce)
-    {
-        if (newForce > 0) 
-            _additionalMotorForce = newForce;
-    }
 
     private void Awake()
     {
@@ -58,7 +50,7 @@ public class CarController : MonoBehaviour
 
     private void HandleMotor()
     {
-        var force = _motorForce + _additionalMotorForce;
+        var force = _motorForce;
         _frontLeftWheel.wheelCollider.motorTorque = _verticalInput* force;
         _frontRightWheel.wheelCollider.motorTorque = _verticalInput* force;
         _currentbreakForce = _isBreaking ? _breakForce : 0f;
@@ -71,8 +63,6 @@ public class CarController : MonoBehaviour
         _frontLeftWheel.wheelCollider.brakeTorque = _currentbreakForce;
         _rearLeftWheel.wheelCollider.brakeTorque = _currentbreakForce;
         _rearRightWheel.wheelCollider.brakeTorque = _currentbreakForce;
-        if (_additionalMotorForce > 0)
-            _additionalMotorForce -= _removingAdditionalSpeedPerSecond * Time.deltaTime;
     }
 
     private void HandleSteering()
