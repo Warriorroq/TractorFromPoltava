@@ -10,8 +10,6 @@ namespace MapGeneration
         private LinkedList<GameObject> _spawnedObjects;
         public void Generate()
         {
-            if (_spawnedObjects is null)
-                _spawnedObjects = new LinkedList<GameObject>();
             ClearObjects();
             var points = _pointGenerator.GeneratePoints();
             foreach (var point in points)
@@ -22,8 +20,10 @@ namespace MapGeneration
             }
         }
 
-        private void ClearObjects()
+        public void ClearObjects()
         {
+            if (_spawnedObjects is null)
+                _spawnedObjects = new LinkedList<GameObject>();
             foreach (var obj in _spawnedObjects)
                 Destroy(obj);
             _spawnedObjects.Clear();
