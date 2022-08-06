@@ -1,4 +1,6 @@
 using System;
+using Unity.VisualScripting;
+using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -13,6 +15,8 @@ public class CarController : MonoBehaviour
     private float _currentbreakForce;
     private bool _isBreaking;
 
+    [SerializeField] private float _additionalMotorForce;
+    [SerializeField] private float _removingAdditionalSpeedPerSecond;
     [SerializeField] private float _motorForce;
     [SerializeField] private float _breakForce;
     [SerializeField] private float _maxSteerAngle;
@@ -24,13 +28,19 @@ public class CarController : MonoBehaviour
     private Rigidbody _carRigidBody;
     [SerializeField] private Vector3 _centerOfMass;
 
+    public void SetAdditionalMotorForce(float newForce)
+    {
+        if (newForce > 0) 
+            _additionalMotorForce = newForce;
+    }
+
     private void Awake()
     {
         _carRigidBody = GetComponent<Rigidbody>();
         _carRigidBody.centerOfMass = _centerOfMass;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         GetInput();
         HandleMotor();
@@ -48,10 +58,11 @@ public class CarController : MonoBehaviour
 
     private void HandleMotor()
     {
-        _frontLeftWheel.wheelCollider.motorTorque = _verticalInput * _motorForce;
-        _frontRightWheel.wheelCollider.motorTorque = _verticalInput * _motorForce;
+        var force = _motorForce + _additionalMotorForce;
+        _frontLeftWheel.wheelCollider.motorTorque = _verticalInput* force;
+        _frontRightWheel.wheelCollider.motorTorque = _verticalInput* force;
         _currentbreakForce = _isBreaking ? _breakForce : 0f;
-        ApplyBreaking();       
+        ApplyBreaking();
     }
 
     private void ApplyBreaking()
@@ -60,6 +71,8 @@ public class CarController : MonoBehaviour
         _frontLeftWheel.wheelCollider.brakeTorque = _currentbreakForce;
         _rearLeftWheel.wheelCollider.brakeTorque = _currentbreakForce;
         _rearRightWheel.wheelCollider.brakeTorque = _currentbreakForce;
+        if (_additionalMotorForce > 0)
+            _additionalMotorForce -= _removingAdditionalSpeedPerSecond * Time.deltaTime;
     }
 
     private void HandleSteering()
