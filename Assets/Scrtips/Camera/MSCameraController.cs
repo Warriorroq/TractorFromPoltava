@@ -249,6 +249,9 @@ public class MSACC_SettingsCameraPlaneX_Z {
     [Tooltip("The largest position on the Z axis that the camera can reach.")]
     public float maxZPosition = 100;
 
+    public Vector3 offSet;
+    public Vector3 rotation;
+    
     [Header("Camera Height")]
     [Tooltip("The normal position of the camera on the Y axis, when the player is far from the edges of the scene.")]
     public float normalYPosition = 40;
@@ -523,8 +526,9 @@ public class MSCameraController : Singletone<MSCameraController> {
 					cameras [x]._camera.transform.parent = null;
 				}
 
-                if (cameras[x].rotationType == MSACC_CameraType.TipoRotac.PlaneX_Z) {
-                    Vector3 newRot = new Vector3(90, cameras[x]._camera.transform.eulerAngles.y, cameras[x]._camera.transform.eulerAngles.z);
+                if (cameras[x].rotationType == MSACC_CameraType.TipoRotac.PlaneX_Z)
+                {
+	                Vector3 newRot = cameraSettings.PlaneX_Z.rotation;
                     cameras[x]._camera.transform.rotation = Quaternion.Euler(newRot);
                     cameras[x]._camera.transform.parent = temp.transform;
                     cameras[x]._camera.transform.position = new Vector3(targetTransform.position.x, cameraSettings.PlaneX_Z.normalYPosition, targetTransform.position.z);
@@ -921,8 +925,9 @@ public class MSCameraController : Singletone<MSCameraController> {
                 float xHeight = cameraSettings.PlaneX_Z.normalYPosition;
                 float ZHeight = cameraSettings.PlaneX_Z.normalYPosition;
                 float rateOfChange = ((cameraSettings.PlaneX_Z.normalYPosition - cameraSettings.PlaneX_Z.limitYPosition) / cameraSettings.PlaneX_Z.edgeDistanceToStartDescending);
-                float clampXPos = Mathf.Clamp(targetTransform.position.x, cameraSettings.PlaneX_Z.minXPosition, cameraSettings.PlaneX_Z.maxXPosition);
-                float clampZPos = Mathf.Clamp(targetTransform.position.z, cameraSettings.PlaneX_Z.minZPosition, cameraSettings.PlaneX_Z.maxZPosition);
+                var offSet = cameraSettings.PlaneX_Z.offSet;
+                float clampXPos = Mathf.Clamp(targetTransform.position.x + offSet.x, cameraSettings.PlaneX_Z.minXPosition, cameraSettings.PlaneX_Z.maxXPosition);
+                float clampZPos = Mathf.Clamp(targetTransform.position.z + offSet.z, cameraSettings.PlaneX_Z.minZPosition, cameraSettings.PlaneX_Z.maxZPosition);
                 Vector3 newPos = new Vector3(clampXPos, cameraSettings.PlaneX_Z.normalYPosition, clampZPos);
                 
                 //discover xHeight
@@ -949,9 +954,9 @@ public class MSCameraController : Singletone<MSCameraController> {
                 //rotation
                 switch (cameraSettings.PlaneX_Z.SelectRotation) {
                     case MSACC_SettingsCameraPlaneX_Z.PlaneXZRotationType.KeepTheRotationFixed:
-                        Vector3 newRot = new Vector3(90, 0, 0);
-                        cameras[index]._camera.transform.rotation = Quaternion.Euler(newRot);
-                        break;
+	                    Vector3 newRot = cameraSettings.PlaneX_Z.rotation;
+	                    cameras[index]._camera.transform.rotation = Quaternion.Euler(newRot);
+	                    break;
                     case MSACC_SettingsCameraPlaneX_Z.PlaneXZRotationType.LookAt:
                         cameras[index]._camera.transform.LookAt(targetTransform.position);
                         break;

@@ -1241,14 +1241,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.12806545, y: -0.35361168, z: 0.04894185, w: 0.92529064}
+  m_LocalRotation: {x: 0.5735764, y: 0, z: 0, w: 0.8191521}
   m_LocalPosition: {x: 2.9041533, y: 4.5031047, z: -5.2446475}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1710396124}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 15.76, y: -41.83, z: 0}
+  m_LocalEulerAnglesHint: {x: 70, y: 0, z: 0}
 --- !u!1 &985749036
 GameObject:
   m_ObjectHideFlags: 0
@@ -2252,7 +2252,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1710396123}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.5735764, y: 0, z: 0, w: 0.8191521}
   m_LocalPosition: {x: 0.2398467, y: -1.2771047, z: 0.062647454}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2260,7 +2260,7 @@ Transform:
   - {fileID: 963194228}
   m_Father: {fileID: 0}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 70, y: 0, z: 0}
 --- !u!114 &1710396125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2360,15 +2360,17 @@ MonoBehaviour:
       invertXInput: 0
       invertYInput: 0
     PlaneX_Z:
-      minXPosition: -100
-      maxXPosition: 100
-      minZPosition: -100
-      maxZPosition: 100
+      minXPosition: -300
+      maxXPosition: 300
+      minZPosition: -300
+      maxZPosition: 300
+      offSet: {x: 0, y: 0, z: -10}
+      rotation: {x: 70, y: 0, z: 0}
       normalYPosition: 26
       limitYPosition: 22
-      edgeDistanceToStartDescending: 50
-      displacementSpeed: 2
-      SelectRotation: 2
+      edgeDistanceToStartDescending: 2.5
+      displacementSpeed: 6
+      SelectRotation: 0
       spinSpeedCustomLookAt: 1
   onCameraSwitch:
     m_PersistentCalls:
