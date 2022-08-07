@@ -1,5 +1,5 @@
 using UnityEngine;
-namespace TruckAbilities
+namespace TruckAbilities.Abilities
 {
     [CreateAssetMenu(fileName = "BigJump", menuName = "BigJump", order = 1)]
     public class BigJump : Ability
