@@ -25,6 +25,14 @@ namespace Vehicles
         [SerializeField] private WheelData _rearRightWheel;
         private Rigidbody _carRigidBody;
         [SerializeField] private Vector3 _centerOfMass;
+        public void ReturnTruck()
+        {
+            transform.position = Vector3.up;
+            transform.rotation = Quaternion.identity;
+            _carRigidBody.velocity = Vector3.zero;
+            _frontLeftWheel.wheelCollider.motorTorque = 0;
+            _frontRightWheel.wheelCollider.motorTorque = 0;
+        }
 
         private void Awake()
         {
