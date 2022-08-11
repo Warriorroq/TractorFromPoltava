@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3237d58e8384ee3880ca56824d4e2f4, type: 3}
+  m_Name: SmallForestData
+  m_EditorClassIdentifier: 
+  _objectsData:
+  - gameObject: {fileID: 6260671398775429490, guid: d80f100636b35ee41ab2698fa9c65bba, type: 3}
+    offSet: {x: 0, y: 0, z: 0}
+    chance: 0.17
+  - gameObject: {fileID: 1076746614396879214, guid: df37b3e0b0693624591044f38fc76ee6, type: 3}
+    offSet: {x: 0, y: 0, z: 0}
+    chance: 0.363
+  - gameObject: {fileID: 5521580880758403200, guid: 065dea0adf025954689ff5f8e594f35a, type: 3}
+    offSet: {x: 0, y: 0, z: 0}
+    chance: 1

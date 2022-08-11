@@ -7,15 +7,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b3237d58e8384ee3880ca56824d4e2f4, type: 3}
-  m_Name: SpawnObjectsData
+  m_Name: TelegaItemsPrefab
   m_EditorClassIdentifier: 
   _objectsData:
-  - gameObject: {fileID: 6946243746120159076, guid: cdd25c7ba73031543b91a02ac1257de5, type: 3}
-    offSet: {x: 0, y: 0.5, z: 0}
-    chance: 0.5
-  - gameObject: {fileID: 1670552211224909686, guid: aa8b3858ad0a4014ca11372e4848a791, type: 3}
-    offSet: {x: 0, y: 0.5, z: 0}
+  - gameObject: {fileID: 3308938818742144055, guid: 1307929f4631f464e9568cfd8c875e74, type: 3}
+    offSet: {x: 0, y: 1, z: 0}
     chance: 1

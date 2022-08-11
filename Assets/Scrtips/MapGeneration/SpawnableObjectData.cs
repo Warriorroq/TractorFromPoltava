@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace MapGeneration
@@ -14,12 +15,14 @@ namespace MapGeneration
             if(_destroyRigitbody)
                 Destroy(_rigitbody);
         }
-        private void OnCollisionEnter(Collision collision)
+        private void OnTriggerEnter(Collider other)
         {
-            var spawnedDataObject = collision.gameObject.GetComponent<SpawnableObjectData>();
+            var spawnedDataObject = other.GetComponent<SpawnableObjectData>();
             if (spawnedDataObject is not null)
                 ResolveConflict(spawnedDataObject);
+            GetComponent<Collider>().isTrigger = false;
         }
+
         private void ResolveConflict(SpawnableObjectData spawnedDataObject)
         {
             if (spawnedDataObject.priority <= priority)
