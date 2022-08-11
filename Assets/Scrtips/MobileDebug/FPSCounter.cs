@@ -11,6 +11,8 @@ namespace MobileDebug
         private void Awake()
         {
             _fpsForLastUpdates = new float[100];
+            if (Application.isMobilePlatform)
+                QualitySettings.vSyncCount = 0;
         }
 
         private void Update()
