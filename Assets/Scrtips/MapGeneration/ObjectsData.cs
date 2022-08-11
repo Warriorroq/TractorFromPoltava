@@ -29,6 +29,7 @@ namespace MapGeneration
             public GameObject gameObject;
             public Vector3 offSet;
             [Range(0,1f)] public float chance;
+            public bool isRandomizedRotation;
             public int CompareTo(SpawningData other)
                 =>chance.CompareTo(other.chance);
         }

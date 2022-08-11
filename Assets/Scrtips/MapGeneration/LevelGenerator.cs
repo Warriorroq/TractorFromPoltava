@@ -16,6 +16,11 @@ namespace MapGeneration
             {
                 var dataForSpawn = _objData.TakeRandomObjectByItsChance();
                 var instance = Instantiate(dataForSpawn.gameObject,point + dataForSpawn.offSet, Quaternion.identity);
+                if (dataForSpawn.isRandomizedRotation)
+                {
+                    var angleRot = instance.transform.eulerAngles;
+                    instance.transform.rotation = Quaternion.Euler(angleRot.x,Random.Range(0,360f),angleRot.y);   
+                }
                 _spawnedObjects.AddFirst(instance);
             }
         }
