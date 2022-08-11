@@ -1447,7 +1447,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 70
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -3348,10 +3348,10 @@ MonoBehaviour:
       maxXPosition: 300
       minZPosition: -300
       maxZPosition: 300
-      offSet: {x: 0, y: 0, z: -10}
+      offSet: {x: 0, y: 0, z: -7}
       rotation: {x: 70, y: 0, z: 0}
-      normalYPosition: 26
-      limitYPosition: 22
+      normalYPosition: 21
+      limitYPosition: 20
       edgeDistanceToStartDescending: 2.5
       displacementSpeed: 6
       SelectRotation: 0
