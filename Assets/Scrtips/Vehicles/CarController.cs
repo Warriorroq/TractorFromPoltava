@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Vehicles
 {
@@ -25,6 +26,8 @@ namespace Vehicles
         [SerializeField] private WheelData _rearRightWheel;
         private Rigidbody _carRigidBody;
         [SerializeField] private Vector3 _centerOfMass;
+        [SerializeField] private Joystick _joystick;
+        [SerializeField] private Slider _breakingSliderForce;
         public void ReturnTruck()
         {
             transform.position = Vector3.up;
@@ -48,12 +51,19 @@ namespace Vehicles
             UpdateWheels();
         }
 
-
         private void GetInput()
         {
-            _horizontalInput = Input.GetAxis(HORIZONTAL);
-            _verticalInput = Input.GetAxis(VERTICAL);
-            _isBreaking = Input.GetKey(KeyCode.Space);
+            if (_joystick is null)
+            {
+                _horizontalInput = Input.GetAxis(HORIZONTAL);
+                _verticalInput = Input.GetAxis(VERTICAL);
+                _isBreaking = Input.GetKey(KeyCode.Space);
+            }
+            else
+            {
+                _horizontalInput = _joystick.Horizontal;
+                _verticalInput = _joystick.Vertical;
+            }
         }
 
         private void HandleMotor()
@@ -61,7 +71,10 @@ namespace Vehicles
             var force = _motorForce;
             _frontLeftWheel.wheelCollider.motorTorque = _verticalInput * force;
             _frontRightWheel.wheelCollider.motorTorque = _verticalInput * force;
-            _currentbreakForce = _isBreaking ? _breakForce : 0f;
+            if(_joystick is null)
+                _currentbreakForce = _isBreaking ? _breakForce : 0f;
+            else
+                _currentbreakForce = _breakingSliderForce.value * _breakForce;
             ApplyBreaking();
         }
 

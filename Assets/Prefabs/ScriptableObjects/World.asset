@@ -15,15 +15,15 @@ MonoBehaviour:
   _objectsData:
   - gameObject: {fileID: 7491695471116990327, guid: dbc407948c70e0c4d8e48e1263042465, type: 3}
     offSet: {x: 0, y: 0, z: 0}
-    chance: 0.012
+    chance: 0.01
     isRandomizedRotation: 1
   - gameObject: {fileID: 1670552211224909686, guid: aa8b3858ad0a4014ca11372e4848a791, type: 3}
     offSet: {x: 0, y: 1.6, z: 0}
-    chance: 0.241
+    chance: 0.22
     isRandomizedRotation: 1
   - gameObject: {fileID: 6946243746120159076, guid: cdd25c7ba73031543b91a02ac1257de5, type: 3}
     offSet: {x: 0, y: 0, z: 0}
-    chance: 0.85
+    chance: 0.792
     isRandomizedRotation: 1
   - gameObject: {fileID: 5521580880758403200, guid: 065dea0adf025954689ff5f8e594f35a, type: 3}
     offSet: {x: 0, y: 1.55, z: 0}
