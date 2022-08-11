@@ -8,9 +8,10 @@ namespace MapGeneration
     {
         public int priority;
         [SerializeField] private Vector3 _boxSize;
+        [SerializeField] private Vector3 _boxOffSet;
         private void Start()
         {
-            var cast = Physics.BoxCastAll(transform.position, _boxSize, Vector3.up);
+            var cast = Physics.BoxCastAll(transform.position + _boxOffSet, _boxSize, Vector3.up);
             foreach (var collider in cast)
             {
                 if (collider.collider.TryGetComponent<SpawnableObjectData>(out var data))
