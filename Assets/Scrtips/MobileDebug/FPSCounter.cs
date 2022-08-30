@@ -19,7 +19,7 @@ namespace MobileDebug
         {
             var fps = 1 / Time.deltaTime;
             _updates++;
-            _fpsForLastUpdates[_updates % (_fpsForLastUpdates.Length + 1)] = fps;
+            _fpsForLastUpdates[_updates % (_fpsForLastUpdates.Length)] = fps;
             _text.text = $"fps:{fps:0.0}\nAverage:{_fpsForLastUpdates.Sum()/_fpsForLastUpdates.Length:0.0}";
         }
     }

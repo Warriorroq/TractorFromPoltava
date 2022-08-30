@@ -1,6 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.AI;
 namespace Vehicles.Tank
@@ -36,6 +34,11 @@ namespace Vehicles.Tank
                 _head.SetLookDirection(_target);
                 _head.LookAtSettedDirection();
             }
+        }
+        private void OnDisable()
+        {
+            _agent.enabled = false;
+            _head.enabled = false;
         }
     }
 }
